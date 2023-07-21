@@ -1,0 +1,73 @@
+<section class="timer-container">
+        <label class="pseudo-white">Remaining Time</label>
+        <div id="timer" class="blue"></div>
+    </section>
+
+    <section id="alert-container" class="box-border-blue">
+        <%= image_tag("exclamation.png", alt: "Exclamation image", id: "alert-image")%>
+        <p id="alert" class="pseudo-grey">
+            <span class="light-blue">Attention :</span>
+            If no founds are received within the remaining time, this link will be deleated and the
+            generated address will become invalid. Please be aware of the minimum deposit amount and only make one deposit transaction.
+        </p>
+    </section>
+
+    <section class="bloc-address-container">
+        <label class="light-blue">Transfer between
+            <span class="blue">0.001 BTC</span>
+            and
+            <span class="blue">1000.00 BTC</span>
+            to the following address :
+        </label>
+        <div id="address-container" class="box-border-dark-blue">
+            <label id="address"><%= @address %></label>
+            <button class="copy-btn">
+                <%= image_tag("copy.png", alt: "copy button image")%>
+            </button>
+        </div>
+    </section>
+
+    <section class="qr-code-container">
+        <div id="qrcode"></div>
+        <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <p class="light-blue">Awaiting Payment</p>
+        <button id="download" class="btn">Download Letter of Guarantee</button>
+    </section>
+
+    <section class="result-container">
+
+        <div class="inner-grid">
+            <label id="link-label" class="light-blue">Order Status Link:</label>
+            <div id="link-container" class="box-border-dark-blue">
+                <p id="link"><%= @url %></p>
+                <button class="copy-btn">
+                    <%= image_tag("copy.png", alt: "copy button image")%>
+                </button>
+            </div>
+        </div>
+
+        <div class="inner-grid">
+            <label id="code-label" class="light-blue">My Code:</label>
+            <div id="code-container" class="box-border-dark-blue">
+                <p id="code"><%= @code %></p>
+                <button class="copy-btn">
+                    <%= image_tag("copy.png", alt: "copy button image")%>
+                </button>
+            </div>
+        </div>
+
+        <div class="inner-grid">
+            <label id="id-label" class="light-blue">Order ID:</label>
+            <div id="id-container" class="box-border-dark-blue">
+                <p id="id"><%= @order_id %></p>
+                <button class="copy-btn">
+                    <%= image_tag("copy.png", alt: "copy button image")%>
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <button id="next-step" class="btn">Next step</button>
+    <label id="total-amount">Total amount received</label>
+    <p id="amount"><%= @amount %></p>

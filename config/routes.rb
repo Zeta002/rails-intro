@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root to: "pages#start"
+  get "mixage/:unique_id", to: "pages#mixage", as: "unique_mixage"
+  get "/api/check_transaction", to: "pages#check_transaction"
 end

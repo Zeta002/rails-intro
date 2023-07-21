@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/se3000/ruby-eth.git
+  revision: b9fd83ffe1d4afa6efb7dbef3648fd6f3d241d1d
+  specs:
+    eth (0.4.18)
+      ffi (~> 1.15)
+      keccak (~> 1.3)
+      money-tree (~> 0.11)
+      openssl (~> 3.0)
+      rlp (~> 0.7)
+      scrypt (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -68,6 +80,11 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
+    arask (1.2.6)
+      fugit (~> 1.1)
+      rails (>= 5.0)
+    bech32 (1.3.0)
+      thor (>= 1.1.0)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -87,9 +104,23 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
+    ffi (1.15.5)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
+    fugit (1.8.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    http-accept (1.7.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -101,6 +132,11 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jquery-rails (4.6.0)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
+    keccak (1.3.1)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -112,8 +148,14 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mime-types (3.4.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     minitest (5.18.1)
+    money-tree (0.11.2)
+      bech32 (~> 1.3)
+      openssl (~> 3.1)
     msgpack (1.7.1)
     net-imap (0.3.6)
       date
@@ -124,12 +166,15 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    netrc (0.11.0)
     nio4r (2.5.9)
-    nokogiri (1.15.2-x86_64-linux)
+    nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
+    openssl (3.1.0)
     public_suffix (5.0.1)
     puma (5.6.6)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.7)
     rack-test (2.1.0)
@@ -166,8 +211,24 @@ GEM
     regexp_parser (2.8.1)
     reline (0.3.5)
       io-console (~> 0.5)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rexml (3.2.5)
+    rlp (0.7.3)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
+    scrypt (3.0.7)
+      ffi-compiler (>= 1.0, < 2.0)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -183,6 +244,7 @@ GEM
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.2)
+    tilt (2.2.0)
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -190,11 +252,15 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    web3-eth (0.1.0)
     webdrivers (5.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -211,13 +277,18 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  arask
   bootsnap
   capybara
   debug
+  eth!
   importmap-rails
   jbuilder
+  jquery-rails
   puma (~> 5.0)
   rails (~> 7.0.6)
+  rest-client
+  sassc-rails
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
@@ -225,10 +296,11 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  web3-eth
   webdrivers
 
 RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.7
+   2.4.15
